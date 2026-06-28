@@ -4,7 +4,7 @@
 
 Your screenings and lab results, mapped onto a body diagram with calm traffic-lights (🟢🟡🔴). For each one it surfaces the **first-principles reasoning**, the **return on investment**, and **risk in perspective** (e.g. how the anesthesia risk of a sedated endoscopy actually compares to everyday alcohol). An optional AI layer reads your *whole* picture and gives a second opinion — but it **proposes, you confirm**; it never silently overrides anything.
 
-Everything runs on your machine. No account, no cloud, no data leaves your computer.
+Runs entirely on your machine — no account, no cloud sync, no tracking. Your data stays local by default; the only thing that ever leaves is what *you* choose to send to *your own* AI provider when you opt into an AI feature (with your own key).
 
 🌐 **Bilingual** (中文 / English) · 🔒 **Local-first & private** · 🔑 **Bring-your-own AI key** · 🖥️ **One-click desktop app**
 
@@ -55,9 +55,9 @@ So this is built on a different premise: **a curious person who trusts data shou
 
 ## Privacy
 
-- **Local-first SQLite** — your health data lives in a file on your machine and never leaves it.
-- **Bring-your-own AI key** — entered in-app; used only for *your* requests, directly to your chosen provider.
-- The curated knowledge base + manual logging work **fully offline, no key required**.
+- **Local-first SQLite** — your health data lives in a file on your machine. Nothing is uploaded or synced anywhere by default, and there's no account or telemetry.
+- **AI features are opt-in and bring-your-own-key** — when you use them (report import, insights, the comprehensive review), the app sends *only the data needed for that request* directly to *your* chosen provider (OpenAI / Anthropic) using *your* key, and asks for consent first. That data is then subject to that provider's terms — so it does leave your machine for those calls. Don't use the AI features for anything you wouldn't send to that provider.
+- The curated knowledge base + manual logging + the dashboard all work **fully offline, no key, nothing leaves your machine**.
 
 ## Quick start
 
