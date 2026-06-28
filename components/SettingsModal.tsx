@@ -11,6 +11,18 @@ interface Status {
   defaultProvider: Provider | null;
 }
 
+// Declared at module scope (not inside the component) so it isn't recreated
+// on every render — keeps its identity stable and satisfies react-hooks rules.
+function StatusBadge({ s }: { s: { configured: boolean; fromUser: boolean } }) {
+  const { t } = useLang();
+  if (!s.configured) return null;
+  return (
+    <span className="inline-flex items-center gap-1 rounded-md bg-[var(--color-green-soft)] px-1.5 py-0.5 text-[10.5px] font-medium text-[#236b48]">
+      <Check size={11} /> {s.fromUser ? t("keyConfigured") : t("keyFromEnv")}
+    </span>
+  );
+}
+
 export function SettingsModal({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
   const { t } = useLang();
   const [status, setStatus] = useState<Status | null>(null);
@@ -46,15 +58,6 @@ export function SettingsModal({ onClose, onSaved }: { onClose: () => void; onSav
     } finally {
       setSaving(false);
     }
-  }
-
-  function StatusBadge({ s }: { s: { configured: boolean; fromUser: boolean } }) {
-    if (!s.configured) return null;
-    return (
-      <span className="inline-flex items-center gap-1 rounded-md bg-[var(--color-green-soft)] px-1.5 py-0.5 text-[10.5px] font-medium text-[#236b48]">
-        <Check size={11} /> {s.fromUser ? t("keyConfigured") : t("keyFromEnv")}
-      </span>
-    );
   }
 
   return (

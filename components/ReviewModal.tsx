@@ -30,11 +30,16 @@ export function ReviewModal({
   const [consent, setConsent] = useState(false);
   const [appliedIdx, setAppliedIdx] = useState<Set<number>>(new Set());
 
-  // Load any saved review on open (no key needed).
+  // Load any saved review on open (no key needed). If one exists, the user
+  // consented when generating it — mark consent so "regenerate" stays usable
+  // (the consent checkbox only renders in the pre-generation state).
   useEffect(() => {
     fetch(`/api/review?personId=${person.id}`)
       .then((r) => r.json())
-      .then((d) => setReview(d.review ?? null))
+      .then((d) => {
+        setReview(d.review ?? null);
+        if (d.review) setConsent(true);
+      })
       .catch(() => {});
   }, [person.id]);
 

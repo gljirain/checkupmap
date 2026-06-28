@@ -203,10 +203,17 @@ export function ItemDetail({
   const secondaryName = lang === "zh" ? item.name : item.nameZh;
 
   // Load the saved thread when the item opens (no key needed — just reads DB).
+  // If a thread already exists, the user consented when they created it, so
+  // mark consent given — otherwise regenerate/follow-up would be permanently
+  // disabled (the consent checkbox only shows for a brand-new, empty thread).
   useEffect(() => {
     fetch(`/api/insight?personId=${person.id}&itemKey=${item.key}`)
       .then((r) => r.json())
-      .then((d) => setMessages(d.messages ?? []))
+      .then((d) => {
+        const msgs = d.messages ?? [];
+        setMessages(msgs);
+        if (msgs.length > 0) setAiConsent(true);
+      })
       .catch(() => {});
   }, [person.id, item.key]);
 

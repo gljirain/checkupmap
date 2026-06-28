@@ -225,8 +225,12 @@ const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("zh");
 
+  // Hydrate the saved language from localStorage AFTER mount (not in the initial
+  // state) so server and first client render agree — a deliberate one-time sync
+  // from an external store, which is exactly what an effect is for here.
   useEffect(() => {
     const saved = localStorage.getItem("ohc-lang");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-shot hydration from localStorage; lazy init would cause an SSR/client mismatch
     if (saved === "en" || saved === "zh") setLangState(saved);
   }, []);
 

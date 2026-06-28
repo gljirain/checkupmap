@@ -520,7 +520,7 @@ function ProfileModal({
   onClose: () => void;
   onSaved: () => void;
 }) {
-  const { lang, t, pick } = useLang();
+  const { t, pick } = useLang();
   const [name, setName] = useState(person?.name ?? "");
   const [sex, setSex] = useState<"male" | "female">(person?.sex ?? "male");
   const [dob, setDob] = useState(person ? person.birthDate.slice(0, 10) : "1990-01-01");
