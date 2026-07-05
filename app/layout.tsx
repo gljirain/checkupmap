@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ongoing Health Check",
+  title: "CheckupMap",
   description:
-    "A personal, first-principles health dashboard — see where you're green, where you're amber, and what's genuinely worth doing.",
+    "CheckupMap — a personal, first-principles health dashboard. See where you're green, where you're amber, and what's genuinely worth doing.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

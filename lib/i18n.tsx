@@ -10,7 +10,7 @@ export function pick(l: L, lang: Lang): string {
 
 // ── UI chrome strings ────────────────────────────────────────────────────────
 const STRINGS = {
-  appTitle: { zh: "持续健康检查", en: "Ongoing Health Check" },
+  appTitle: { zh: "CheckupMap", en: "CheckupMap" },
   tagline: { zh: "第一性原理 · 看清回报 · 你来决定", en: "First-principles. ROI-aware. Your call." },
   loading: { zh: "正在加载你的健康地图…", en: "Loading your health map…" },
   bodyMap: { zh: "身体地图", en: "Body map" },

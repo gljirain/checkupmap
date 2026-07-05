@@ -1,4 +1,4 @@
-# Ongoing Health Check
+# CheckupMap
 
 > A **private, local-first** personal health dashboard that explains the **science and the ROI** behind every check — so you act on the few things that matter, not "do every test."
 

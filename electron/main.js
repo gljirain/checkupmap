@@ -84,9 +84,9 @@ function showFatal(msg) {
     "data:text/html;charset=utf-8," +
       encodeURIComponent(
         `<body style="font-family:-apple-system,system-ui,sans-serif;padding:36px;background:#f6f4ef;color:#1f2421">
-         <h2>Couldn't start Ongoing Health Check</h2>
+         <h2>Couldn't start CheckupMap</h2>
          <p>${escapeHtml(msg)}</p>${log}
-         <p style="color:#888;font-size:12px">Full log: ~/Library/Application Support/Ongoing Health Check/server.log</p></body>`,
+         <p style="color:#888;font-size:12px">Full log: ~/Library/Application Support/CheckupMap/server.log</p></body>`,
       ),
   );
 }
@@ -131,7 +131,7 @@ async function createWindow() {
     height: 860,
     minWidth: 880,
     minHeight: 640,
-    title: "Ongoing Health Check",
+    title: "CheckupMap",
     backgroundColor: "#f6f4ef",
     webPreferences: { contextIsolation: true },
   });

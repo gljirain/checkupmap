@@ -1,6 +1,6 @@
 # Disclaimer
 
-**Ongoing Health Check is an educational, informational tool. It is NOT medical advice, and it is not a medical device.**
+**CheckupMap is an educational, informational tool. It is NOT medical advice, and it is not a medical device.**
 
 Please read this carefully before using the software or relying on anything it produces.
 

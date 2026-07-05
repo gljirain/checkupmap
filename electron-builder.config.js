@@ -18,8 +18,8 @@ const hasAppleCreds =
 
 /** @type {import('electron-builder').Configuration} */
 const config = {
-  appId: "com.ongoinghealthcheck.app",
-  productName: "Ongoing Health Check",
+  appId: "com.checkupmap.app",
+  productName: "CheckupMap",
   afterPack: "scripts/after-pack.js",
   asar: true,
   files: ["electron/**/*", "package.json"],
