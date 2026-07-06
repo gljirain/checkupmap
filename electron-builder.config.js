@@ -38,7 +38,7 @@ const config = {
           gatekeeperAssess: false,
           entitlements: "build/entitlements.mac.plist",
           entitlementsInherit: "build/entitlements.mac.plist",
-          notarize: { teamId: process.env.APPLE_TEAM_ID },
+          notarize: true, // teamId comes from APPLE_TEAM_ID env var
         }
       : {}),
   },
