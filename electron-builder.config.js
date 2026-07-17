@@ -13,8 +13,11 @@
 // With none of these set, the build is unsigned and these mac signing keys are
 // omitted entirely.
 
-const hasAppleCreds =
+const hasNotaryCreds =
   !!process.env.APPLE_ID && !!process.env.APPLE_APP_SPECIFIC_PASSWORD && !!process.env.APPLE_TEAM_ID;
+const hasSigningCert = !!process.env.CSC_LINK && !!process.env.CSC_KEY_PASSWORD;
+const canAutoDiscoverCert = process.env.CSC_IDENTITY_AUTO_DISCOVERY !== "false";
+const shouldSignAndNotarize = hasNotaryCreds && (hasSigningCert || canAutoDiscoverCert);
 
 /** @type {import('electron-builder').Configuration} */
 const config = {
@@ -29,13 +32,15 @@ const config = {
   ],
   directories: { output: "release" },
   mac: {
-    target: "dmg",
+    target: "zip",
     category: "public.app-category.healthcare-fitness",
     // Signing + notarization only when credentials are available.
-    ...(hasAppleCreds
+    ...(shouldSignAndNotarize
       ? {
+          forceCodeSigning: true,
           hardenedRuntime: true,
           gatekeeperAssess: false,
+          strictVerify: true,
           entitlements: "build/entitlements.mac.plist",
           entitlementsInherit: "build/entitlements.mac.plist",
           notarize: true, // teamId comes from APPLE_TEAM_ID env var

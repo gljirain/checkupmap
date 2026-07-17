@@ -20,9 +20,9 @@ jobs:
       matrix:
         include:
           - os: macos-latest # Apple Silicon (M1–M4)
-            artifact: "release/*.dmg"
+            artifact: "release/*.zip"
           - os: macos-13 # Intel Macs
-            artifact: "release/*.dmg"
+            artifact: "release/*.zip"
           - os: windows-latest
             artifact: "release/*.exe"
           - os: ubuntu-latest
@@ -45,10 +45,16 @@ jobs:
       - name: Build installer
         run: npm run dist
         env:
-          # No signing certs in CI yet → build unsigned. (Mac notarization is a
-          # later step once an Apple Developer cert is added as a secret.)
-          CSC_IDENTITY_AUTO_DISCOVERY: false
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify macOS signing and notarization
+        if: runner.os == 'macOS'
+        run: npm run verify:mac
 
       - name: Upload as workflow artifact (for manual runs)
         if: github.event_name == 'workflow_dispatch'
